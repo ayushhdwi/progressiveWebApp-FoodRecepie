@@ -1,13 +1,13 @@
 // it is the cache that is not supposed to change as much (or shell) 
 const staticCacheName = 'site-static-v2';
 
-const dynamicCache = 'dynamic-cache-v1';
+const dynamicCacheName = 'dynamic-cache-v1';
 
 // it is: assets to store in cache
 const assets = [
     "/",
     "/index.html",
-	"/pages/fallback.html",
+	"pages/fallback.html",
     "js/app.js",
     "js/ui.js",
     "js/materialize.js",
@@ -40,7 +40,7 @@ self.addEventListener('activate', actEvent => {
 		caches.keys().then(keys => {
 			// console.log(key);
 			return keys
-			.filter(key => key !== staticCacheName)
+			.filter(key => key !== staticCacheName && key !== dynamicCacheName)
 			.map(key => caches.delete(key))
 		})
 	)
@@ -52,7 +52,7 @@ self.addEventListener('fetch', fetchEvent => {
 	fetchEvent.respondWith(
 		caches.match(fetchEvent.request).then(cacheRes => {
 			return cacheRes || fetch(fetchEvent.request).then(fetchRes => {
-				return caches.open(dynamicCache).then(cache => {
+				return caches.open(dynamicCacheName).then(cache => {
 					// * put() function puts the given response in the cache
 					// * and thats why we cloned it first so that we could
 					// * return the original response later
@@ -60,6 +60,13 @@ self.addEventListener('fetch', fetchEvent => {
 					return fetchRes; // dsa
 				})
 			})
+		// * here we can serve the fallback page
+		// * this promiss neithrer returned the asset from cache
+		// * nor from server(as its offline)
+		}).catch(() => {
+			if(fetchEvent.request.url.indexOf('.html') > -1) {
+				return caches.match('/pages/fallback.html')
+			}
 		})
 	)
 });
