@@ -7,6 +7,7 @@ const dynamicCache = 'dynamic-cache-v1';
 const assets = [
     "/",
     "/index.html",
+	"/pages/fallback.html",
     "js/app.js",
     "js/ui.js",
     "js/materialize.js",
@@ -14,8 +15,8 @@ const assets = [
     "css/materialize.css",
     "img/dish.png",
     "https://fonts.googleapis.com/css2?family=Material+Icons",
-		"img/icons/manifest-icon-192.png",
-		"img/icons/manifest-icon-512.png"
+	"img/icons/manifest-icon-192.png",
+	"img/icons/manifest-icon-512.png"
 ];
 
 // it is: install event
