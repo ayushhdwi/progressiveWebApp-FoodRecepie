@@ -1,0 +1,24 @@
+{
+    "name": "PWA-tutorial",
+    "version": "1.0.0",
+    "description": "It is a progressive web app i.e. on installing the site can run on mobile device even when offline and behave as a native app.",
+    "main": "sw.js",
+    "dependencies": {
+        "firebase": "^8.5.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ayushhdwi/progressiveWebApp-FoodRecepie.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ayushhdwi/progressiveWebApp-FoodRecepie/issues"
+    },
+    "homepage": "https://github.com/ayushhdwi/progressiveWebApp-FoodRecepie#readme"
+}

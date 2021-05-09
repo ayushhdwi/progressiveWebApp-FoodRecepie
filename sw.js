@@ -1,5 +1,5 @@
 // it is the cache that is not supposed to change as much (or shell) 
-const staticCacheName = 'site-static-v2';
+const staticCacheName = 'site-static-v5';
 
 const dynamicCacheName = 'dynamic-cache-v1';
 
@@ -46,27 +46,39 @@ self.addEventListener('activate', actEvent => {
 	)
 });
 
+// it is: cache size limiting function
+const limitCacheSize = (name,size) => {
+	caches.open(name).then(cache => {
+		cache.keys().then(keys => {
+			if(keys.length > size) {
+				cache.delete(keys[0]).then(limitCacheSize(name, size));
+			}
+		})
+	})
+}
+
 // it is: fetch event
 self.addEventListener('fetch', fetchEvent => {
 	// console.log('fetc	h event', fetchEvent);
-	fetchEvent.respondWith(
-		caches.match(fetchEvent.request).then(cacheRes => {
-			return cacheRes || fetch(fetchEvent.request).then(fetchRes => {
-				return caches.open(dynamicCacheName).then(cache => {
-					// * put() function puts the given response in the cache
-					// * and thats why we cloned it first so that we could
-					// * return the original response later
-					cache.put(fetchEvent.request.url,fetchRes.clone());
-					return fetchRes; // dsa
-				})
-			})
-		// * here we can serve the fallback page
-		// * this promiss neithrer returned the asset from cache
-		// * nor from server(as its offline)
-		}).catch(() => {
-			if(fetchEvent.request.url.indexOf('.html') > -1) {
-				return caches.match('/pages/fallback.html')
-			}
-		})
-	)
+	// fetchEvent.respondWith(
+	// 	caches.match(fetchEvent.request).then(cacheRes => {
+	// 		return cacheRes || fetch(fetchEvent.request).then(fetchRes => {
+	// 			return caches.open(dynamicCacheName).then(cache => {
+	// 				// * put() function puts the given response in the cache
+	// 				// * and thats why we cloned it first so that we could
+	// 				// * return the original response later
+	// 				cache.put(fetchEvent.request.url,fetchRes.clone());
+	// 				limitCacheSize(dynamicCacheName,15);
+	// 				return fetchRes;
+	// 			})
+	// 		})
+	// 	// * here we can serve the fallback page
+	// 	// * this promiss neithrer returned the asset from cache
+	// 	// * nor from server(as its offline)
+	// 	}).catch(() => {
+	// 		if(fetchEvent.request.url.indexOf('.html') > -1) {
+	// 			return caches.match('/pages/fallback.html')
+	// 		}
+	// 	})
+	// )
 });
