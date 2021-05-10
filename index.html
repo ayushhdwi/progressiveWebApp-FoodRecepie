@@ -83,7 +83,7 @@
 		</div>
 	</nav>
 
-	<!-- side nav -->
+	<!-- it is: side nav -->
 	<ul id="side-menu" class="sidenav side-menu">
 		<li><a class="subheader">FOODNINJA</a></li>
 		<li><a href="/" class="waves-effect">Home</a></li>
@@ -96,49 +96,10 @@
 		</li>
 	</ul>
 	
-	<!-- recipes -->
+	<!-- it is: recipes -->
 	<div class="recipes container grey-text text-darken-1">
 		<h6 class="center">NINJA RECEPIES</h6>
-		<div class="card-panel recipe white row">
-			<img src="/img/dish.png" alt="recipe thumb">
-			<div class="recipe-details">
-				<div class="recipe-title">Edame Noodles</div>
-				<div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
-			</div>
-			<div class="recipe-delete">
-				<i class="material-icons">delete_outline</i>
-			</div>
-		</div>
-		<div class="card-panel recipe white row">
-			<img src="/img/dish.png" alt="recipe thumb">
-			<div class="recipe-details">
-				<div class="recipe-title">Edame Noodles</div>
-				<div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
-			</div>
-			<div class="recipe-delete">
-				<i class="material-icons">delete_outline</i>
-			</div>
-		</div>
-		<div class="card-panel recipe white row">
-			<img src="/img/dish.png" alt="recipe thumb">
-			<div class="recipe-details">
-				<div class="recipe-title">Edame Noodles</div>
-				<div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
-			</div>
-			<div class="recipe-delete">
-				<i class="material-icons">delete_outline</i>
-			</div>
-		</div>
-		<div class="card-panel recipe white row">
-			<img src="/img/dish.png" alt="recipe thumb">
-			<div class="recipe-details">
-				<div class="recipe-title">Edame Noodles</div>
-				<div class="recipe-ingredients">Edame Beans, Noodels, Garlic oil</div>
-			</div>
-			<div class="recipe-delete">
-				<i class="material-icons">delete_outline</i>
-			</div>
-		</div>
+		
 	</div>
 	
 	<div class="center">
@@ -147,7 +108,7 @@
 		</a>
 	</div>
 	
-	<!-- add recipe side nav -->
+	<!-- it is: add recipe side nav -->
 	<div id="side-form" class="sidenav side-form">
 		<form class="add-recipe container section">
 			<h6>New Recipe</h6>
@@ -169,18 +130,15 @@
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
-
 	<!-- store your firebase app configs in ./js/config.js as object with name firebaseConfig -->
 	<script src="./js/config.js"></script>
 	
-	<script>
-		// Initialize Firebase
+	<script>// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
 		const db = firebase.firestore();
 	</script>
-
 	<script src="./js/app.js"></script>
 	<script src="./js/db.js"></script>
-	<script src="./js/ui.js"></script> <!-- materialize js script -->
+	<script src="./js/ui.js"></script>
 </body>
 </html>
